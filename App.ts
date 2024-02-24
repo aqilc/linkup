@@ -4,4 +4,5 @@ import { Asset } from "expo-asset";
 import { Assets } from "@react-navigation/elements";
 
 Asset.loadAsync(Assets);
-registerRootComponent(App);
+// registerRootComponent(App);
+export default App;
