@@ -17,12 +17,9 @@ export default function App() {
       style={styles.container}
       >
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Welcome" component={Welcome}/>
-          <Tab.Navigator>
-            <Tab.Screen name="Login" component={Login} />
-          </Tab.Navigator>
-        </Stack.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen name="Login" component={Login} />
+        </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
     </LinearGradient>
