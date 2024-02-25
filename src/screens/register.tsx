@@ -10,8 +10,8 @@ export default function Login({ navigation }) {
 			<ScrollView contentContainerStyle={styles.container}>
 				<Text style={styles.title}>Login</Text>
 				<View style={styles.inputs}>
-					<TextInput style={styles.input} placeholder="Username" />
-					<TextInput style={styles.input} placeholder="Password" />
+					<TextInput style={styles.input} placeholder="username" />
+					<TextInput style={styles.input} placeholder="password" />
 				</View>
 				<View style={styles.buttons}>
 					<Pressable style={styles.button} onPress={() => {}}>

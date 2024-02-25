@@ -9,7 +9,8 @@ import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
 import BottomTabs from './bottomtabs';
 
-const loggedin = true;
+const loggedin = false;
+
 
 SplashScreen.preventAutoHideAsync();
 

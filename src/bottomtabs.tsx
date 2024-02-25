@@ -1,6 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { SFSymbol } from 'react-native-sfsymbols';
+import SweetSFSymbol from "sweet-sfsymbols";
 import Home from './screens/home';
+import { View } from 'react-native';
+import { Text } from 'react-native';
+import { SFSymbol } from 'react-native-sfsymbols';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -12,17 +16,28 @@ export default function BottomTabs() {
         tabBarActiveTintColor: '#e91e63',
         tabBarActiveBackgroundColor: '#ffffff70',
         tabBarInactiveBackgroundColor: '#ffffff70',
+        headerShown: false,
+        tabBarStyle: {
+          height: 100, 
+          borderTopWidth: 0,
+          width: '100%',
+          elevation: 0,
+          left: 0,
+          right: 0,
+        }
       }}
       >
       
+
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            // <SFSymbol name="home" color={color} size={size} />
-            <>Home</>
+            <View> 
+              <SFSymbol name="house" color={color} size={size} />
+            </View>
           ),
         }}
       />
@@ -32,7 +47,7 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: 'Updates',
           tabBarIcon: ({ color, size }) => (
-            <SFSymbol name="bell" color={color} size={size} />
+            <SweetSFSymbol name="bell" colors={[color]} size={size} />
           ),
           tabBarBadge: 3,
         }}
@@ -43,7 +58,7 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <SFSymbol name="account" color={color} size={size} />
+            <SweetSFSymbol name="person" colors={[color]} size={size} />
           ),
         }}
       /> */}

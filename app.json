@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.linkup2"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,9 +31,16 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/Grotesk-Bold.ttf"]
+          "fonts": [
+            "./assets/Grotesk-Bold.ttf"
+          ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "87dbefd6-afa2-47ae-a340-7785102aca67"
+      }
+    }
   }
 }
