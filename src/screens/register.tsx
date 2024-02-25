@@ -1,21 +1,55 @@
-import { StyleSheet, View, TextInput, Text, Button, ScrollView, Pressable } from "react-native";
+import { StyleSheet, View, TextInput, Text, Button, ScrollView, Pressable, Alert, AppState } from "react-native";
 import GradientBackground from "../components/gradientbackground";
 import { moderateScale } from "../helpers/fontsize";
+import { useState } from "react";
+import { supabase } from "../helpers/supabase";
 // import GLOBALS from "../helpers/globalstate";
 
+AppState.addEventListener('change', (state) => {
+	if (state === 'active') {
+	  supabase.auth.startAutoRefresh()
+	} else {
+	  supabase.auth.stopAutoRefresh()
+	}
+  })
+  
 
-export default function Login({ navigation }) {
+export default function Register({ navigation }) {
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false)
+	
+	async function handleLogin () {
+			setLoading(true)
+	const {
+		data: { session },
+		error,
+		} = await supabase.auth.signUp({
+		email: email,
+		password: password,
+		})
+
+		
+	
+		if (error) Alert.alert(error.message)
+		setLoading(false)
+		};
+
 	return (
 		<GradientBackground>
 			<ScrollView contentContainerStyle={styles.container}>
-				<Text style={styles.title}>Login</Text>
+				<Text style={styles.title}>Register</Text>
 				<View style={styles.inputs}>
-					<TextInput style={styles.input} placeholder="username" />
-					<TextInput style={styles.input} placeholder="password" />
+					<TextInput style={styles.input}  autoCapitalize={'none'}
+ value={email} onChangeText={(text)=> setEmail(text)} placeholder="Email" />
+					<TextInput           secureTextEntry={true}           autoCapitalize={'none'}
+	 style={styles.input} value={password} onChangeText={(text)=> setPassword(text)} placeholder="Password" />
 				</View>
 				<View style={styles.buttons}>
-					<Pressable style={styles.button} onPress={() => {}}>
-						<Text style={styles.white}>sign in</Text>
+					<Pressable style={styles.button} disabled={loading} onPress={() => handleLogin()}>
+						<Text style={styles.white}>sign up</Text>
 					</Pressable>
 					<Pressable style={styles.button} onPress={() => navigation.goBack()}>
 						<Text style={styles.white}>go back</Text>

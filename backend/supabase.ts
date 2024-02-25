@@ -11,32 +11,32 @@ export type Database = {
     Tables: {
       channels: {
         Row: {
-          createdAt: string
+          created_at: string
           id: number
           messageIds: number[]
-          sender: number
-          sendTo: number
+          sender: string
+          sendTo: string
         }
         Insert: {
-          createdAt?: string
+          created_at?: string
           id?: number
           messageIds?: number[]
-          sender: number
-          sendTo: number
+          sender: string
+          sendTo: string
         }
         Update: {
-          createdAt?: string
+          created_at?: string
           id?: number
           messageIds?: number[]
-          sender?: number
-          sendTo?: number
+          sender?: string
+          sendTo?: string
         }
         Relationships: [
           {
             foreignKeyName: "public_channels_sender_fkey"
             columns: ["sender"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profile"
             referencedColumns: ["id"]
           }
         ]
@@ -65,32 +65,40 @@ export type Database = {
         }
         Relationships: []
       }
-      users: {
+      profile: {
         Row: {
           channels: number[]
-          created_at: string
-          id: number
-          linkedTo: number | null
+          created_at: string | null
+          email: string
+          id: string
+          linked_to: number | null
           schedule: Json | null
-          username: string | null
         }
         Insert: {
           channels?: number[]
-          created_at?: string
-          id?: number
-          linkedTo?: number | null
+          created_at?: string | null
+          email: string
+          id: string
+          linked_to?: number | null
           schedule?: Json | null
-          username?: string | null
         }
         Update: {
           channels?: number[]
-          created_at?: string
-          id?: number
-          linkedTo?: number | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          linked_to?: number | null
           schedule?: Json | null
-          username?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profile_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

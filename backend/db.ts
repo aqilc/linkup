@@ -8,7 +8,7 @@ export const env: {
 	supabase_key: string;
 } = {};
 read(".env").toString().split("\n").map(s => s.split("="))
-	.forEach(entry => entry[0] && entry[0][0] !== "#" && (env[entry[0].toLowerCase()] = entry[1]));
+	.forEach(entry => entry[0] && entry[0][0] !== "#" && (env[entry[0].toLowerCase() as 'supabase_url'] = entry[1]));
 
 console.log(env);
 

@@ -2,16 +2,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './screens/home';
 import { View } from 'react-native';
 import { Text } from 'react-native';
-import Chat from './screens/chat';
-// import { SFSymbol } from 'react-native-sfsymbols';
+import { SFSymbol } from 'react-native-sfsymbols';
+import Notifications from './screens/notifcations';
+import Profile from './screens/profile';
+import Chats from './screens/chats';
+import { User } from '@supabase/supabase-js';
 
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabs() {
+export default function BottomTabs({ user }: { user: User }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      sceneContainerStyle={{ backgroundColor: 'transparent' }}
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
         tabBarActiveBackgroundColor: '#ffffff70',
@@ -20,46 +24,19 @@ export default function BottomTabs() {
         tabBarStyle: {
           height: 100, 
           borderTopWidth: 0,
-          width: '100%',
+          backgroundColor:'transparent',
           elevation: 0,
-          left: 0,
-          right: 0,
         }
-      }}
-      >
-      
-
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <View> 
-              {/* <SFSymbol name="house" color={color} size={size} /> */}
-            </View>
-          ),
-        }}
-      />
+      }}>
       <Tab.Screen
         name="Chat"
-        component={Chat}
+        component={() => <Chats user={user} />}
         options={{
           tabBarLabel: 'Chat',
           tabBarIcon: ({ color, size }) => (
-            <View> 
-              {/* <SFSymbol name="bubble.left" color={color} size={size} /> */}
+            <View>
+            <SFSymbol name="message" color={color} size={size} />
             </View>
-          ),
-        }}
-      />
-      {/* <Tab.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{
-          tabBarLabel: 'Updates',
-          tabBarIcon: ({ color, size }) => (
-            <SweetSFSymbol name="bell" colors={[color]} size={size} />
           ),
           tabBarBadge: 3,
         }}
@@ -70,10 +47,12 @@ export default function BottomTabs() {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <SweetSFSymbol name="person" colors={[color]} size={size} />
+            <View>
+            <SFSymbol name="person" color={color} size={size} />
+            </View>
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 }
