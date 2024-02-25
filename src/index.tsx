@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
-    'Grotesk Bold': require('../assets/Grotesk Bold.ttf'),
+    'Grotesk-Bold': require('../assets/Grotesk-Bold.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

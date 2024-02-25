@@ -6,15 +6,20 @@ import { moderateScale } from "../helpers/fontsize";
 
 export default function Welcome({ navigation }) {
 	return (
-		<GradientBackground>
-			<Text style={styles.title}>Welcome</Text>
+		<GradientBackground style={styles.container}>
+			<Text style={styles.title}>linkup</Text>
 			<GradientThing style={styles.thing}>
-				<Text style={styles.h1}>The new way for Gen Z's to connect on campus.</Text>
-				<Text>create an account to join</Text>
+				<Text style={styles.h1}>the new way for Gen Z's to connect on campus.</Text>
+				<Text style={styles.white}>create an account to join</Text>
 			</GradientThing>
-			<Pressable onPress={() => navigation.navigate('Login')}>
-				<Text>Go to Login</Text>
-			</Pressable>
+			<View style={styles.buttons}>
+				<Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
+					<Text style={styles.white}>sign up with email</Text>
+				</Pressable>
+				<Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
+					<Text style={styles.white}>log in</Text>
+				</Pressable>
+			</View>
 		</GradientBackground>
 	);
 };
@@ -25,11 +30,18 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		color: 'white',
+		fontFamily: 'Grotesk-Bold',
+		gap: moderateScale(100),
+	},
+	white: {
+		color: 'white',
+		fontFamily: 'Grotesk-Bold',
+		fontSize: moderateScale(18),
 	},
 	thing: {
-		width: '70%',
-		height: moderateScale(500),
-		fontFamily: 'Grotesk Bold',
+		width: '80%',
+		height: '25%',
+		fontFamily: 'Grotesk-Bold',
 		color: 'white',
 		borderRadius: 20,
 		display: 'flex',
@@ -37,16 +49,35 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		padding: 20,
 		textAlign: 'center',
+		// fontWeight: 'bold',
 	},
 	h1: {
-		fontSize: moderateScale(24),
+		fontSize: moderateScale(20),
 		marginBottom: moderateScale(24),
+		fontFamily: 'Grotesk-Bold',
+		color: 'white',
+		textAlign: 'center',
+	},
+	button: {
+		padding: moderateScale(20),
+		borderRadius: 20,
+		backgroundColor: '#404040',
+		textAlign: 'center',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
 		color: 'white',
 	},
+	buttons: {
+		display: 'flex',
+		flexDirection: 'column',
+		gap: moderateScale(20),
+		width: '70%'
+	},
 	title: {
-		fontSize: 24,
-		marginBottom: 24,
+		fontSize: moderateScale(32),
 		color: 'white',
+		fontFamily: 'Grotesk-Bold',
 	},
 	input: {
 		borderWidth: 1,

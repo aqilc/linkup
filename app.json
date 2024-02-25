@@ -30,7 +30,7 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/Grotesk Bold.ttf"]
+          "fonts": ["./assets/Grotesk-Bold.ttf"]
         }
       ]
     ]

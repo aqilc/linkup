@@ -6,8 +6,8 @@ export default function GradientThing({ children, style }) {
 	return (
 		<LinearGradient
 			colors={["#360134", "#0b8693"]}
-			start={[1, 0]}
-			end={[1, 2.31]}
+			start={[0, .5]}
+			end={[1, .5]}
 			style={{
 				...style,
 				// flex: 1,
