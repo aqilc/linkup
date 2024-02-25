@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontFamily: 'Grotesk-Bold',
 		gap: moderateScale(100),
+		// width: '100%',
 	},
 	title: {
 		fontSize: moderateScale(32),
@@ -89,14 +90,14 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(18),
 		color: 'white',
 		padding: moderateScale(20),
-		width: "100%",
+		width: moderateScale(300),
 	},
 	inputs: {
-		width: '80%',
+		width: '100%',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		gap: moderateScale(20),
+		// gap: moderateScale(20),
 	},
 	button: {
 		padding: 20,

@@ -5,25 +5,34 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
 import { moderateScale } from "../helpers/fontsize";
 import { supabase } from "../helpers/supabase";
+import Constants from "expo-constants";
 
+const uri = Constants?.expoConfig?.hostUri
+  ? Constants.expoConfig.hostUri.split(`:`).shift().concat(`:8080`)
+  : `yourapi.com`;
 
 const Stack = createNativeStackNavigator();
 export default function Chats({ user }: { user: User }) {
 	const [messages, setMessages] = useState([]);
 	const [chats, setChats] = useState([]);
 	const [connected, setConnected] = useState(false);
-	const serverconn = useRef(new WebSocket('ws://localhost:3000')).current;
+	alert(uri);
+	const serverconn = useRef(new WebSocket("ws://" + uri)).current;
 
 	useEffect(() => {
 		(async () => {
-			const url = 'http://localhost:3000/chats/' + user?.id;
-			const data = await (await fetch(url, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			})).json();
-			setChats(data.channels);
+			const url = "http://" + uri + '/chats/' + user?.id;
+			alert(url);
+			try {
+				const data = await (await fetch(url, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})).json();
+				alert(JSON.stringify(data));
+				setChats(data.channels);
+			} catch (error) {}
 		})()
 		// serverconn.onopen = async () => {
 		// 	setConnected(true);
@@ -37,10 +46,10 @@ export default function Chats({ user }: { user: User }) {
 	return (
 		<View style={{flex: 1}}>
 			<Stack.Navigator
-				initialRouteName="ChatPicker"
+				initialRouteName="Chats"
 				>
-				<Stack.Screen name="ChatPicker" component={() => <ChatPicker chats={chats} onSelect={chat => console.log(chat)} />} />
-				<Stack.Screen name="Chats" component={() => <Chat connected={connected} messages={messages} onSend={onSend} />} />
+				<Stack.Screen name="Chats">{() => <ChatPicker chats={chats} onSelect={chat => console.log(chat)} />}</Stack.Screen>
+				<Stack.Screen name="Chat">{() => <Chat connected={connected} messages={messages} onSend={onSend} />}</Stack.Screen>
 			</Stack.Navigator>
 		</View>
 	)

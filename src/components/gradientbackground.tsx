@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 export default function GradientBackground({ children, style }: { children: any, style?: any }) {
 	return (
 		<LinearGradient
-			colors={['rgba(81,36,82,1)', 'rgba(33,75,88,1)']} start={[0, 0]} end={[1, 2.31]}
+			colors={['rgba(81,36,82,1)', 'rgba(33,75,88,1)']} start={[0, 0]} end={[1, 1]}
 			style={{...styles.container, ...style}}
 			>
 			{children}

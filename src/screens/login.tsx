@@ -8,24 +8,24 @@ import { supabase } from "../helpers/supabase";
 
 export default function Login({ navigation }) {
 	const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false)
-    
-    const handleLogin = async () => {
-        
-        setLoading(true)
-        
-        const { error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-        });
-            if (error) {
-                setError(error.message);
-            }
-        setLoading(false)
-    };
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false)
+	
+	const handleLogin = async () => {
+			
+			setLoading(true)
+			
+			const { error } = await supabase.auth.signInWithPassword({
+							email: email,
+							password: password,
+			});
+					if (error) {
+							setError(error.message);
+					}
+			setLoading(false)
+	};
 
 	return (
 		<GradientBackground>

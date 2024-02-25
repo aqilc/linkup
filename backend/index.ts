@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import http from 'http';
 import WebSocket, { WebSocketServer } from 'ws';
 import { supabase } from './db';
-import { Database } from './supabase';
+import { Database, Tables } from './supabase';
 import { User } from '@supabase/supabase-js';
 
 const app = express();
@@ -32,7 +32,7 @@ app.use(express.json());
 
 app.get('/chats/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
-	let channels: Database["public"]["Tables"]["channels"]["Row"][] = [];
+	let channels: Tables<"channels">[] = [];
 
 	// Check if a channel exists for the user
 	const { data: existingChannels, error } = await supabase
@@ -54,7 +54,7 @@ app.get('/chats/:id', async (req: Request, res: Response) => {
 			.from('channels')
 			.insert([{ sender: id, sendTo: randomUserId }]).select("*");
 		console.log(newChannel);
-		if(error) throw error;
+		if(insertError) throw error;
 		channels.push(newChannel![0]);
 	}
 	res.json({ channels });
