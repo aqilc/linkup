@@ -1,25 +1,28 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SFSymbol } from 'react-native-sfsymbols';
-import Login from './screens/login';
+// import { SFSymbol } from 'react-native-sfsymbols';
+import Home from './screens/home';
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+export default function BottomTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: '#e91e63',
+        tabBarActiveBackgroundColor: '#ffffff70',
+        tabBarInactiveBackgroundColor: '#ffffff70',
       }}
       >
       
       <Tab.Screen
-        name="Feed"
-        component={Login}
+        name="Home"
+        component={Home}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <SFSymbol name="home" color={color} size={size} />
+            // <SFSymbol name="home" color={color} size={size} />
+            <>Home</>
           ),
         }}
       />

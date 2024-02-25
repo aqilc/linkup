@@ -7,11 +7,13 @@ import Welcome from './screens/welcome';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { useCallback } from 'react';
+import BottomTabs from './bottomtabs';
+
+const loggedin = true;
 
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
-
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     'Grotesk-Bold': require('../assets/Grotesk-Bold.ttf'),
@@ -25,10 +27,14 @@ export default function App() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen component={Welcome} name="Welcome" options={{ headerShown: false }}/>
-          <Stack.Screen component={Login} name="Login" options={{ headerShown: false }}/>
-        </Stack.Navigator>
+        {loggedin ?
+          <Stack.Navigator>
+            <Stack.Screen component={Welcome} name="Welcome" options={{ headerShown: false }}/>
+            <Stack.Screen component={Login} name="Login" options={{ headerShown: false }}/>
+          </Stack.Navigator>
+        :
+          <BottomTabs/>
+        }
       </NavigationContainer>
       <StatusBar style="auto" />
     </View>

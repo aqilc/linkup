@@ -4,7 +4,7 @@ import GradientThing from "../components/gradientthing";
 import { moderateScale } from "../helpers/fontsize";
 
 
-export default function Welcome({ navigation }) {
+export default function Home({ navigation }) {
 	return (
 		<GradientBackground style={styles.container}>
 			<Text style={styles.title}>linkup</Text>
@@ -13,7 +13,7 @@ export default function Welcome({ navigation }) {
 				<Text style={styles.white}>create an account to join</Text>
 			</GradientThing>
 			<View style={styles.buttons}>
-				<Pressable style={styles.button} onPress={() => navigation.navigate('Register')}>
+				<Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
 					<Text style={styles.white}>sign up with email</Text>
 				</Pressable>
 				<Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
@@ -78,5 +78,13 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(32),
 		color: 'white',
 		fontFamily: 'Grotesk-Bold',
+	},
+	input: {
+		borderWidth: 1,
+		borderColor: '#000',
+		width: '80%',
+		padding: 8,
+		marginBottom: 8,
+		color: 'white',
 	},
 });
