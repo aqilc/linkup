@@ -1,14 +1,17 @@
-import { StyleSheet, View, TextInput, Text, Button } from "react-native";
+import { StyleSheet, View, TextInput, Text, Button, ScrollView } from "react-native";
+import GradientBackground from "../components/gradientbackground";
 
 
 export default function Login() {
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Login</Text>
-			<TextInput style={styles.input} placeholder="Email" />
-			<TextInput style={styles.input} placeholder="Password" />
-			<Button title="Sign in" onPress={() => {}} />
-		</View>
+		<GradientBackground>
+			<ScrollView contentContainerStyle={styles.container}>
+				<Text style={styles.title}>Login</Text>
+				<TextInput style={styles.input} placeholder="Username" />
+				<TextInput style={styles.input} placeholder="Password" />
+				<Button title="Sign in" onPress={() => {}} />
+			</ScrollView>
+		</GradientBackground>
 	);
 };
 
