@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SweetSFSymbol from "sweet-sfsymbols";
 import Home from './screens/home';
 import { View } from 'react-native';
 import { Text } from 'react-native';
-import { SFSymbol } from 'react-native-sfsymbols';
+import Chat from './screens/chat';
+// import { SFSymbol } from 'react-native-sfsymbols';
 
 
 const Tab = createBottomTabNavigator();
@@ -36,7 +36,19 @@ export default function BottomTabs() {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <View> 
-              <SFSymbol name="house" color={color} size={size} />
+              {/* <SFSymbol name="house" color={color} size={size} /> */}
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: 'Chat',
+          tabBarIcon: ({ color, size }) => (
+            <View> 
+              {/* <SFSymbol name="bubble.left" color={color} size={size} /> */}
             </View>
           ),
         }}
